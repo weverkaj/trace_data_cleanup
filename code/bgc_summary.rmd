@@ -1,0 +1,201 @@
+---
+title: "BGC First Look"
+output: html_document
+date: "2025-09-19"
+---
+# Setup
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+library(janitor)
+library(lubridate)
+
+```
+
+#Plots
+```{r}
+treatment = tibble(
+  plot = c(1:6),
+  treatment = rep(c("cont", "warm"), 3)
+)
+
+
+```
+
+# Ingrowth cores
+
+```{r}
+
+ingrowth_cores = read_csv(here("data/BGC_data/csv/TRACE_ingrowth_cores.csv"))
+ingrowth_fill = read_csv(here("data/BGC_data/csv/TRACE_ingrowth_cores_fill.csv"))
+
+```
+
+
+```{r}
+fill = ingrowth_fill %>% 
+  clean_names() %>% 
+  mutate(across(3:16, as.numeric)) %>% 
+  mutate(date = mdy(date),
+         start = ymd(case_when(date == "2017-11-02" ~ "2017-11-01",
+                           date == "2017-03-01" ~ "2017-03-01",
+                           date == "2018-07-25" ~ "2017-07-01",
+                           date == "2018-09-26" ~ "2018-09-01",
+                           date == "2019-03-20" ~ "2019-03-01",
+                           date == "2019-11-25" ~ "2019-11-01")),
+         end = ymd(case_when(date == "2017-11-02" ~ "2017-11-30",
+                           date == "2017-03-01" ~ "2017-03-31",
+                           date == "2018-07-25" ~ "2017-07-31",
+                           date == "2018-09-26" ~ "2018-09-30",
+                           date == "2019-03-20" ~ "2019-03-31",
+                           date == "2019-11-25" ~ "2019-11-30"))) %>% 
+  group_by(date, start, end) %>% 
+  summarise(tc = mean(tc, na.rm = T),
+            tn = mean(tn, na.rm = T),
+            tc_tn = mean(tc_tn, na.rm = T),
+            nh4 = mean(nh4, na.rm = T),
+            no3 = mean(no3, na.rm = T),
+            nh4_min_rate = mean(nh4_min_rate, na.rm = T),
+            no3_min_rate = mean(no3_min_rate, na.rm = T),
+            po4 = mean(po4, na.rm = T),
+            ext_c = mean(ext_c, , na.rm = T),
+            ext_n = mean(ext_n, na.rm = T),
+            ubial_c = mean(ubial_c, na.rm = T),
+            ubial_n = mean(ubial_n, na.rm = T),
+            ubial_p = mean(ubial_p, na.rm = T),
+            ubial_c_n = mean(ubial_c_n, na.rm = T)) %>% 
+    filter(!is.na(start)) %>% 
+  mutate(type = "init")
+
+ingrowth_rm= ingrowth_cores %>% 
+  clean_names() %>% 
+  mutate(across(6:19, as.numeric)) %>% 
+  mutate(date_installed = mdy(date_installed),
+         date_removed = mdy(date_removed)) %>% 
+  mutate(type = "rm")
+
+
+ingrowth = ingrowth_cores %>% 
+  clean_names() %>% 
+  mutate(across(6:19, as.numeric)) %>% 
+  mutate(date_installed = mdy(date_installed),
+         date_removed = mdy(date_removed)) %>% 
+  filter(!is.na(date_installed)) %>% 
+  left_join(fill, by = join_by(between(date_installed, start, end)), suffix = c(".rm", ".init")) %>% 
+  mutate(
+    tc.change = tc.rm - tc.init,
+    tn.change = tn.rm - tc.init,
+    tc_tn.change = tc_tn.rm - tc_tn.init,
+    nh4.change = nh4.rm - nh4.init,
+    no3.change = no3.rm - no3.init,
+    po4.change = po4.rm - po4.init, 
+    ubial_c.change = ubial_c.rm - ubial_c.init,
+    ubial_n.change = ubial_n.rm - ubial_n.init,
+    ubial_p.change = ubial_p.rm - ubial_p.init,
+    ubial_c_n.change = ubial_c_n.rm - ubial_c_n.init
+  ) %>% 
+  left_join(treatment, by = "plot")
+
+inits = ingrowth %>% 
+  select(core, plot, rep, date_installed, date_removed, ends_with(".init")) %>% 
+  rename_with(~ gsub(".init", "", .x), ends_with(".init")) %>% 
+  mutate(type = "init",
+         date = date_installed)
+
+rms = ingrowth %>% 
+  select(core, plot, rep, date_installed, date_removed, ends_with(".rm")) %>% 
+  rename_with(~ gsub(".rm", "", .x), ends_with(".rm")) %>% 
+  mutate(type = "rm",
+         date = date_removed)
+
+
+
+```
+
+```{r}
+all = bind_rows(inits, rms)
+
+
+ggplot(ingrowth) + 
+  geom_segment(aes(x = date_installed, xend = date_removed,
+                   y = po4.init, yend = po4.rm, color = as.factor(date))) +
+  facet_wrap(plot~., nrow = 3) +
+  scale_x_date(date_breaks = "3 month", date_labels = "%b-%Y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+
+```
+
+
+
+
+# Porewater Chemistry
+
+```{r}
+pwc_data = read_csv(here("data/BGC_data/csv/TRACE_porewater_chemistry.csv"), skip = 1)
+```
+
+```{r}
+pwc = pwc_data %>% 
+  clean_names() %>% 
+  separate_wider_delim(sample_id, delim = "-", names = c("plot", "depth"), too_few = "align_start") %>% 
+  mutate(date = mdy(sample_name)) %>% 
+  filter(!is.na(plot),
+         !is.na(depth)) %>% 
+  rename(volume = x4)
+  
+## ASK Gabriel what the columns mean
+
+```
+
+```{r}
+ggplot(pwc, aes(x = date, y = mg_tdn)) +
+  geom_point() + 
+  facet_wrap(plot~depth, nrow = 6, ncol = 3) +
+  scale_x_date(date_breaks = "3 month", date_labels = "%b-%Y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+```
+
+# Lysimiter
+
+```{r}
+
+lys_chem_raw = read_csv(here("data/BGC_data/csv/TRACE_surface_lysimiter_chemistry.csv"))
+
+```
+
+```{r}
+lys_chem = lys_chem_raw %>% 
+  janitor::clean_names() %>%
+  mutate(date = mdy(date)) %>% 
+  mutate(across(3:7, as.numeric))
+```
+
+```{r}
+ggplot(lys_chem, aes(x = date, y = npoc_ug)) + 
+  geom_point() + 
+  facet_wrap(plot~., nrow = 3, ncol = 2) +
+  scale_x_date(date_breaks = "3 month", date_labels = "%b-%Y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+# Resin
+
+```{r}
+resin_data = read_csv(here("data/BGC_data/csv/TRACE_resin.csv"))
+```
+
+```{r}
+resin = resin_data %>% 
+  clean_names() %>% 
+  mutate(installed = dmy(installed),
+         removed = dmy(removed),
+         across(7:8, as.numeric))
+  
+```
+
