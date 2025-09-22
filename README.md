@@ -1,12 +1,14 @@
-Data cleaning for TRACE flux data and biogeochemical data. Data are as follows:
+# Data cleaning for TRACE flux data and biogeochemical data. 
 
-Key Columns: plot, date (year-month-day)
+Cleaned data is found in the *data_cleaned* folder. Data are described as follows:
 
-Column names: varname_unit_source
+    Key Columns: plot, date (year-month-day)
 
-For aggregated columns (columns that represent means or measures of variation): varname_measure_unit_source
+    Column names: varname_unit_source
 
-varname - name of the variable
-unit - unit
-measure - measure of aggregated data (i.e. mean, SD, etc)
-source - file from which data was taken
+    For aggregated columns (columns that represent means or measures of variation): varname_measure_unit_source
+
+        varname - name of the variable
+        unit - unit
+        measure - measure of aggregated data (i.e. mean, SD, etc)
+        source - file from which data was taken
