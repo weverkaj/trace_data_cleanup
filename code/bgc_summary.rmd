@@ -177,7 +177,8 @@ ingrowth_tidy = ingrowth %>%
             ubial.p.change_ug.gsoil_SD_traceingrowthcores = sd(ubial_p.change, na.rm = T),
             ubial.c.n.change_ug.gsoil_mean_traceingrowthcores = mean(ubial_c_n.change, na.rm = T),
             ubial.c.n.change_ug.gsoil_SD_traceingrowthcores = sd(ubial_c_n.change, na.rm = T)) %>% 
-  rename(date = date_removed)
+  rename(date = date_removed,
+         date_installed_traceingrowthcores = date_installed)
 
 
 write_csv(ingrowth_tidy, file = here("data_cleaned/ingrowth_cores.csv"), na = "")
@@ -207,7 +208,7 @@ ggplot(ingrowth) +
 # Porewater Chemistry
 
 ```{r}
-pwc_data = read_csv(here("data/BGC_data/csv/TRACE_porewater_chemistry.csv"), skip = 1)
+pwc_data = read_csv(here("data_raw/BGC_data/csv/TRACE_porewater_chemistry.csv"), skip = 1)
 ```
 
 ```{r}
@@ -217,16 +218,32 @@ pwc = pwc_data %>%
   mutate(date = mdy(sample_name)) %>% 
   filter(!is.na(plot),
          !is.na(depth)) %>% 
-  rename(volume = x4)
+  rename(volume = x4) %>% 
+  select(date, where(~!all(is.na(.))),
+         -x1, -sample_name, -notes, -npoc, -tn) %>% 
+  mutate(volume = as.numeric(volume),
+         mg_npoc = as.numeric(mg_npoc),
+         mg_tdn = as.numeric(mg_tdn),
+         plot = as.numeric(plot)) %>% 
+  rename(date = date,
+         plot = plot,
+         volume_ml = volume,
+         npoc_mg.l = mg_npoc_l,
+         npoc_mg = mg_npoc,
+         tdn_mg.l = mg_tdn_l,
+         tdn_mg = mg_tdn) %>% 
+  rename_with(~ paste0(., "_pwchemistry"), c(-date, -plot))
+
+write_csv(pwc, file = here("data_cleaned/pwchemistry.csv"), na = "")
   
 ## ASK Gabriel what the columns mean
 
 ```
 
 ```{r}
-ggplot(pwc, aes(x = date, y = mg_tdn)) +
+ggplot(pwc, aes(x = date, y = tdn_mg.l_pwchemistry)) +
   geom_point() + 
-  facet_wrap(plot~depth, nrow = 6, ncol = 3) +
+  facet_wrap(plot~depth_pwchemistry, nrow = 6, ncol = 3) +
   scale_x_date(date_breaks = "3 month", date_labels = "%b-%Y") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
@@ -236,15 +253,46 @@ ggplot(pwc, aes(x = date, y = mg_tdn)) +
 
 ```{r}
 
-lys_chem_raw = read_csv(here("data/BGC_data/csv/TRACE_surface_lysimiter_chemistry.csv"))
+lys_chem_toctn_raw_head = read_csv(here("data_raw/BGC_data/csv/TRACE_surface_lysimiter_chemistry_toctdn_working.csv"), col_names = F, n_max = 1)
+lys_chem_toctn_raw_data = read_csv(here("data_raw/BGC_data/csv/TRACE_surface_lysimiter_chemistry_toctdn_working.csv"), skip = 2, col_names = F)
+colnames(lys_chem_toctn_raw_data) = unlist(lys_chem_toctn_raw_head)
 
+lys_chem_westco_raw = read_csv(here("data_raw/BGC_data/csv/TRACE_surface_lysimiter_chemistry_westco.csv"))
 ```
 
 ```{r}
-lys_chem = lys_chem_raw %>% 
-  janitor::clean_names() %>%
+lys_chem_cn = lys_chem_toctn_raw_data %>% 
+  clean_names() %>% 
+  mutate(date = dmy(date),
+         across(3:9, as.numeric)) %>% 
+  select(-npoc, -tn, -na) %>% 
+  rename(npoc_ug.mL = npoc_dilution,
+         tn_ug.mL = tn_dilution)
+
+lys_chem_westco = lys_chem_westco_raw %>% 
+  clean_names() %>% 
   mutate(date = mdy(date)) %>% 
-  mutate(across(3:7, as.numeric))
+  select(-run, -date_and_plot) %>% 
+  mutate(across(3:9, ~case_when(. == "BDL" ~ "0",
+                                .default = .))) %>%
+  mutate(across(2:9, as.numeric)) %>% 
+  rename(po4_ugP.mL = po4_p_mg_l,
+         po4_ugP = po4_p_ug,
+         no3_ugN.mL = no3_n_mg_l,
+         no3_ugN = no3_n_ug,
+         nh4_ugN.mL = nh4_n_mg_l,
+         nh4_ugN = nh4_n_ug)
+
+
+lys_chem = lys_chem_cn %>% 
+  left_join(lys_chem_westco, by = join_by(plot, date)) %>% 
+  rename_with(~ paste0(., "_lysimiter.surface.chemistry"), c(-date, -plot))
+
+
+write_csv(lys_chem, file = here("data_cleaned/lysimiter.surface.chemistry.csv"), na = "")
+
+
+
 ```
 
 ```{r}
