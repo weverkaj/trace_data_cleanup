@@ -181,7 +181,7 @@ ingrowth_tidy = ingrowth %>%
          date_installed_traceingrowthcores = date_installed)
 
 
-write_csv(ingrowth_tidy, file = here("data_cleaned/ingrowth_cores.csv"), na = "")
+# write_csv(ingrowth_tidy, file = here("data_cleaned/ingrowth_cores.csv"), na = "")
 
 ```
 
@@ -224,7 +224,8 @@ pwc = pwc_data %>%
   mutate(volume = as.numeric(volume),
          mg_npoc = as.numeric(mg_npoc),
          mg_tdn = as.numeric(mg_tdn),
-         plot = as.numeric(plot)) %>% 
+         plot = as.numeric(plot),
+         depth = as.factor(depth)) %>% 
   rename(date = date,
          plot = plot,
          volume_ml = volume,
@@ -232,11 +233,12 @@ pwc = pwc_data %>%
          npoc_mg = mg_npoc,
          tdn_mg.l = mg_tdn_l,
          tdn_mg = mg_tdn) %>% 
-  rename_with(~ paste0(., "_pwchemistry"), c(-date, -plot))
+  pivot_wider(id_cols = c(date, plot), names_from = depth, values_from = c(volume_ml, npoc_mg.l, npoc_mg, tdn_mg.l, tdn_mg), values_fill = NA) %>% 
+  rename_with(~ paste0(., "cm_pwchemistry"), c(-date, -plot))
 
-write_csv(pwc, file = here("data_cleaned/pwchemistry.csv"), na = "")
+# write_csv(pwc, file = here("data_cleaned/pwchemistry.csv"), na = "")
   
-## ASK Gabriel what the columns mean
+# ASK Gabriel what the columns mean
 
 ```
 
@@ -289,14 +291,14 @@ lys_chem = lys_chem_cn %>%
   rename_with(~ paste0(., "_lysimiter.surface.chemistry"), c(-date, -plot))
 
 
-write_csv(lys_chem, file = here("data_cleaned/lysimiter.surface.chemistry.csv"), na = "")
+# write_csv(lys_chem, file = here("data_cleaned/lysimiter.surface.chemistry.csv"), na = "")
 
 
 
 ```
 
 ```{r}
-ggplot(lys_chem, aes(x = date, y = npoc_ug)) + 
+ggplot(lys_chem, aes(x = date, y = no3_ugN.mL_lysimiter.surface.chemistry)) + 
   geom_point() + 
   facet_wrap(plot~., nrow = 3, ncol = 2) +
   scale_x_date(date_breaks = "3 month", date_labels = "%b-%Y") +
@@ -307,15 +309,39 @@ ggplot(lys_chem, aes(x = date, y = npoc_ug)) +
 # Resin
 
 ```{r}
-resin_data = read_csv(here("data/BGC_data/csv/TRACE_resin.csv"))
+resin_data = read_csv(here("data_raw/BGC_data/csv/TRACE_resin.csv"))
 ```
 
 ```{r}
+
 resin = resin_data %>% 
   clean_names() %>% 
   mutate(installed = dmy(installed),
          removed = dmy(removed),
-         across(7:8, as.numeric))
+         across(7:8, as.numeric)) %>% 
+  select(date = removed, plot, installed, 7:8) %>% 
+  rename(nh4_ugN.day = ug_nh4_n_day,
+         no3_ugN.day = ug_no3_n_day) %>% 
+  rename_with(~ paste0(., "_resin"), c(-date, -plot))
   
+
+write_csv(resin, file = here("data_cleaned/resin.csv"), na = "")
+
+
+```
+
+
+# Throughfall
+
+
+```{r}
+throughfall_raw = read_csv(here("data_raw/BGC_data/csv/Trace_throughfall_bgc.csv"))
+```
+
+
+```{r}
+throughfall = throughfall_raw %>% 
+  clean_names() %>% 
+  mutate(date = dmy(date))
 ```
 
