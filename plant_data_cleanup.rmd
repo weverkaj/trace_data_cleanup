@@ -1,0 +1,119 @@
+---
+title: "plant data cleanup"
+output: html_document
+date: "2025-09-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+library(janitor)
+library(lubridate)
+
+```
+
+# Densiometer canopy cover
+```{r}
+
+densiometer_raw = read_csv(here("data_raw/plant_data/TRACE_canopy_cover_densiometer_RAW(raw data).csv"))
+
+```
+
+
+```{r}
+
+densiometer = densiometer_raw %>% 
+  mutate(canopy.open_percent_densiometer = (n.conversion + s.conversion + e.conversion + w.conversion)/4,
+         date = dmy(date),
+         plot) %>% 
+  select(date, plot, canopy.open_percent_densiometer)
+  
+
+```
+
+
+# Canopy LAI
+
+```{r}
+
+lai_raw = read_csv(here("data_raw/plant_data/TRACE_canopy_LAI_summary - 2025 02 21(LAI by plot - tidy).csv")) 
+
+```
+
+```{r}
+
+lai = lai_raw %>% 
+  clean_names() %>% 
+  mutate(date = mdy(date),
+         plot = as.numeric(str_remove(plot, "P"))) %>% 
+  group_by(date, plot) %>% 
+  summarise(lai_m2.m2_mean = mean(lai, na.rm = T),
+            lai_m2.m2_SD = sd(lai, na.rm = T)) %>% 
+  rename_with(~ paste0(., "_lai.canopy"), c(-date, -plot))
+  
+```
+
+# Plant Height
+
+```{r}
+plant_height_raw = read_csv(here("data_raw/plant_data/TRACE_plant_height_measurements_summary(plot summary).csv"))
+```
+
+```{r}
+
+plant_height = plant_height_raw %>% 
+  clean_names() %>% 
+  mutate(date = mdy(date)) %>% 
+  select(-treatment) %>% 
+  rename(plantheight_cm_mean = height_avg_plot,
+         plantheight_cm_max = height_max_plot,
+         n.plants_count = n,
+         plantheight_cm_SD = sd,
+         plantheight_cm_se = se) %>% 
+  rename_with(~ paste0(., "_plant.height"), c(-date, -plot))
+
+```
+
+
+# Plant Apparency
+
+```{r}
+
+apparency_raw = read_csv(here("data_raw/plant_data/TRACE_plant_apparency_measurements_summary(plot summary).csv"))
+
+```
+
+```{r}
+
+apparency = apparency_raw %>% 
+  clean_names() %>% 
+  mutate(date = mdy(date)) %>% 
+  select(-treatment, -n) %>% 
+  rename(foliar.apparency = foliar_intercept_mean) %>%
+  pivot_wider(id_cols = c(date, plot), names_from = height, values_from = c(foliar.apparency, sd, se), names_sep = ".") %>% 
+  rename_with(~ paste0(., "_count"), starts_with("foliar")) %>% 
+  rename_with(~ paste0(., "_count_SD"), starts_with("sd")) %>% 
+  rename_with(~ paste0(., "_count_SE"), starts_with("se")) %>% 
+  rename_with(~ str_replace(., "sd.", "foliar.apparency."), starts_with("sd")) %>% 
+  rename_with(~ str_replace(., "se.", "foliar.apparency."), starts_with("se")) %>% 
+  rename_with(~ paste0(., "_apparency"), c(-date, -plot))
+  
+
+```
+
+
+
+# All Plant
+
+```{r}
+all_plant = lai %>% 
+  full_join(densiometer, join_by(date, plot)) %>% 
+  full_join(plant_height, join_by(date, plot)) %>% 
+  full_join(apparency, join_by(date, plot))
+
+
+# write_csv(all_plant, file = here("data_cleaned/plant_data.csv"), na = "")
+```
+

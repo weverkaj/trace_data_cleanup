@@ -1,0 +1,557 @@
+date,direction,location,plot,LAI,msmt_type,treatment,group
+8/4/2017,unknown,inside,P1,6.97,original,control,plot
+1/11/2018,unknown,inside,P1,0.6,original,control,plot
+1/29/2018,unknown,inside,P1,0.56,original,control,plot
+8/27/2018,west,outside,P1,1.98,original,control,plot
+12/13/2018,west,outside,P1,4.35,original,control,plot
+2/7/2019,west,outside,P1,3.91,original,control,plot
+3/7/2019,west,outside,P1,3.53,original,control,plot
+4/10/2019,west,outside,P1,4.37,original,control,plot
+5/22/2019,west,outside,P1,4.58,original,control,plot
+7/11/2019,west,outside,P1,4.29,original,control,plot
+7/11/2019,center,outside,P1,4.87,center,control,plot
+8/23/2019,west,outside,P1,4.78,original,control,plot
+8/23/2019,center,outside,P1,4.66,center,control,plot
+9/19/2019,west,outside,P1,6.08,original,control,plot
+9/19/2019,center,outside,P1,5.92,center,control,plot
+10/30/2019,west,outside,P1,6.35,original,control,plot
+10/30/2019,center,outside,P1,6.49,center,control,plot
+2/27/2020,west,outside,P1,3.67,original,control,plot
+2/27/2020,center,outside,P1,3.67,center,control,plot
+5/21/2020,west,outside,P1,5.8,original,control,plot
+5/21/2020,center,outside,P1,6.18,center,control,plot
+7/2/2020,west,outside,P1,5.56,original,control,plot
+7/2/2020,center,outside,P1,5.82,center,control,plot
+8/21/2020,west,outside,P1,6.09,original,control,plot
+8/21/2020,center,outside,P1,6.11,center,control,plot
+9/23/2020,west,outside,P1,6.36,original,control,plot
+9/23/2020,center,outside,P1,6.3,center,control,plot
+10/21/2020,west,outside,P1,6.34,original,control,plot
+10/21/2020,center,outside,P1,6.51,center,control,plot
+11/24/2020,west,outside,P1,6.59,original,control,plot
+11/24/2020,center,outside,P1,6.65,center,control,plot
+12/22/2020,west,outside,P1,6.78,original,control,plot
+12/22/2020,center,outside,P1,6.73,center,control,plot
+1/21/2021,west,outside,P1,5.93,original,control,plot
+1/21/2021,center,outside,P1,6.16,center,control,plot
+2/21/2021,west,outside,P1,6.03,original,control,plot
+2/21/2021,center,outside,P1,6.11,center,control,plot
+3/31/2021,west,outside,P1,5.32,original,control,plot
+3/31/2021,center,outside,P1,5.54,center,control,plot
+4/22/2021,west,outside,P1,5.09,original,control,plot
+4/22/2021,center,outside,P1,5.51,center,control,plot
+5/20/2021,west,outside,P1,5.4,original,control,plot
+5/20/2021,center,outside,P1,5.54,center,control,plot
+7/22/2021,west,outside,P1,5.92,original,control,plot
+7/22/2021,center,outside,P1,6.1,center,control,plot
+9/23/2021,west,outside,P1,6.27,original,control,plot
+9/23/2021,center,outside,P1,6.6,center,control,plot
+12/9/2021,west,outside,P1,6.9,original,control,plot
+12/9/2021,center,outside,P1,7.03,center,control,plot
+2/18/2022,west,outside,P1,5.84,original,control,plot
+2/18/2022,center,outside,P1,5.87,center,control,plot
+4/14/2022,west,outside,P1,5.69,original,control,plot
+4/14/2022,center,outside,P1,5.35,center,control,plot
+6/8/2022,west,outside,P1,4.95,original,control,plot
+6/8/2022,center,outside,P1,4.72,center,control,plot
+8/16/2022,west,outside,P1,6.02,original,control,plot
+8/16/2022,center,outside,P1,5.67,center,control,plot
+10/18/2022,west,outside,P1,6.08,original,control,plot
+10/18/2022,center,outside,P1,5.8,center,control,plot
+12/8/2022,west,outside,P1,5.9,original,control,plot
+12/8/2022,center,outside,P1,5.85,center,control,plot
+2/8/2023,west,outside,P1,5.66,original,control,plot
+2/8/2023,center,outside,P1,5.72,center,control,plot
+4/13/2023,west,outside,P1,5.2,original,control,plot
+4/13/2023,center,outside,P1,5.14,center,control,plot
+6/27/2023,west,outside,P1,5.87,original,control,plot
+6/27/2023,center,outside,P1,5.42,center,control,plot
+9/8/2023,west,outside,P1,5.41,original,control,plot
+9/8/2023,center,outside,P1,6.15,center,control,plot
+11/14/2023,west,outside,P1,5.47,original,control,plot
+11/14/2023,center,outside,P1,6.1,center,control,plot
+1/17/2024,west,outside,P1,5.57,original,control,plot
+1/17/2024,center,outside,P1,5.34,center,control,plot
+3/15/2024,west,outside,P1,5.61,original,control,plot
+3/15/2024,center,outside,P1,5.69,center,control,plot
+5/10/2024,west,outside,P1,5.64,original,control,plot
+5/10/2024,center,outside,P1,5.32,center,control,plot
+8/9/2024,west,outside,P1,6.01,original,control,plot
+8/9/2024,center,outside,P1,6.06,center,control,plot
+10/22/2024,west,outside,P1,6.04,original,control,plot
+10/22/2024,center,outside,P1,5.94,center,control,plot
+8/4/2017,unknown,inside,P2,6.38,original,warmed,plot
+1/11/2018,unknown,inside,P2,0.35,original,warmed,plot
+1/29/2018,unknown,inside,P2,0.46,original,warmed,plot
+8/27/2018,west,outside,P2,1.23,original,warmed,plot
+12/13/2018,west,outside,P2,3.92,original,warmed,plot
+2/7/2019,west,outside,P2,2.95,original,warmed,plot
+3/7/2019,west,outside,P2,3.89,original,warmed,plot
+4/10/2019,west,outside,P2,4.09,original,warmed,plot
+5/22/2019,west,outside,P2,3.55,original,warmed,plot
+7/11/2019,west,outside,P2,3.97,original,warmed,plot
+7/11/2019,center,outside,P2,4.17,center,warmed,plot
+8/23/2019,west,outside,P2,4.62,original,warmed,plot
+8/23/2019,center,outside,P2,4.46,center,warmed,plot
+9/19/2019,west,outside,P2,5.46,original,warmed,plot
+9/19/2019,center,outside,P2,5.68,center,warmed,plot
+10/30/2019,west,outside,P2,6.75,original,warmed,plot
+10/30/2019,center,outside,P2,6.92,center,warmed,plot
+2/27/2020,west,outside,P2,3.13,original,warmed,plot
+2/27/2020,center,outside,P2,3,center,warmed,plot
+5/21/2020,west,outside,P2,5.44,original,warmed,plot
+5/21/2020,center,outside,P2,5.18,center,warmed,plot
+7/2/2020,west,outside,P2,5.36,original,warmed,plot
+7/2/2020,center,outside,P2,5.21,center,warmed,plot
+8/21/2020,west,outside,P2,5.52,original,warmed,plot
+8/21/2020,center,outside,P2,5.77,center,warmed,plot
+9/23/2020,west,outside,P2,5.41,original,warmed,plot
+9/23/2020,center,outside,P2,5.43,center,warmed,plot
+10/21/2020,west,outside,P2,5.82,original,warmed,plot
+10/21/2020,center,outside,P2,5.78,center,warmed,plot
+11/24/2020,west,outside,P2,6.15,original,warmed,plot
+11/24/2020,center,outside,P2,5.97,center,warmed,plot
+12/22/2020,west,outside,P2,6.02,original,warmed,plot
+12/22/2020,center,outside,P2,6.08,center,warmed,plot
+1/21/2021,west,outside,P2,5.64,original,warmed,plot
+1/21/2021,center,outside,P2,5.74,center,warmed,plot
+2/21/2021,west,outside,P2,5.87,original,warmed,plot
+2/21/2021,center,outside,P2,5.69,center,warmed,plot
+3/31/2021,west,outside,P2,5.13,original,warmed,plot
+3/31/2021,center,outside,P2,5.53,center,warmed,plot
+4/22/2021,west,outside,P2,5.55,original,warmed,plot
+4/22/2021,center,outside,P2,5.38,center,warmed,plot
+5/20/2021,west,outside,P2,5.52,original,warmed,plot
+5/20/2021,center,outside,P2,5.62,center,warmed,plot
+7/22/2021,west,outside,P2,5.28,original,warmed,plot
+7/22/2021,center,outside,P2,5.48,center,warmed,plot
+9/23/2021,west,outside,P2,5.87,original,warmed,plot
+9/23/2021,center,outside,P2,5.99,center,warmed,plot
+12/9/2021,west,outside,P2,6.41,original,warmed,plot
+12/9/2021,center,outside,P2,6.27,center,warmed,plot
+2/18/2022,west,outside,P2,5.44,original,warmed,plot
+2/18/2022,center,outside,P2,5.55,center,warmed,plot
+4/14/2022,west,outside,P2,5.26,original,warmed,plot
+4/14/2022,center,outside,P2,5.33,center,warmed,plot
+6/8/2022,west,outside,P2,4.74,original,warmed,plot
+6/8/2022,center,outside,P2,4.72,center,warmed,plot
+8/16/2022,west,outside,P2,4.92,original,warmed,plot
+8/16/2022,center,outside,P2,5.03,center,warmed,plot
+10/18/2022,west,outside,P2,5.05,original,warmed,plot
+10/18/2022,center,outside,P2,5.17,center,warmed,plot
+12/8/2022,west,outside,P2,5.28,original,warmed,plot
+12/8/2022,center,outside,P2,5.39,center,warmed,plot
+2/8/2023,west,outside,P2,5.31,original,warmed,plot
+2/8/2023,center,outside,P2,5.64,center,warmed,plot
+4/13/2023,west,outside,P2,4.6,original,warmed,plot
+4/13/2023,center,outside,P2,4.89,center,warmed,plot
+6/27/2023,west,outside,P2,4.95,original,warmed,plot
+6/27/2023,center,outside,P2,4.98,center,warmed,plot
+9/8/2023,west,outside,P2,5.97,original,warmed,plot
+9/8/2023,center,outside,P2,5.28,center,warmed,plot
+11/14/2023,west,outside,P2,5.55,original,warmed,plot
+11/14/2023,center,outside,P2,5.86,center,warmed,plot
+1/17/2024,west,outside,P2,5.68,original,warmed,plot
+1/17/2024,center,outside,P2,5.67,center,warmed,plot
+3/15/2024,west,outside,P2,5.36,original,warmed,plot
+3/15/2024,center,outside,P2,5.32,center,warmed,plot
+5/10/2024,west,outside,P2,5.02,original,warmed,plot
+5/10/2024,center,outside,P2,5.04,center,warmed,plot
+8/9/2024,west,outside,P2,5.34,original,warmed,plot
+8/9/2024,center,outside,P2,5.39,center,warmed,plot
+10/22/2024,west,outside,P2,5.37,original,warmed,plot
+10/22/2024,center,outside,P2,5.51,center,warmed,plot
+8/4/2017,unknown,inside,P3,6.33,original,control,plot
+1/11/2018,unknown,inside,P3,0.38,original,control,plot
+1/29/2018,unknown,inside,P3,0.56,original,control,plot
+8/27/2018,west,outside,P3,1.1,original,control,plot
+12/13/2018,west,outside,P3,4.79,original,control,plot
+2/7/2019,west,outside,P3,4.7,original,control,plot
+3/7/2019,west,outside,P3,4.86,original,control,plot
+4/10/2019,west,outside,P3,5.2,original,control,plot
+5/22/2019,west,outside,P3,5.7,original,control,plot
+7/11/2019,west,outside,P3,5.07,original,control,plot
+7/11/2019,center,outside,P3,6.05,center,control,plot
+8/23/2019,west,outside,P3,6.73,original,control,plot
+8/23/2019,center,outside,P3,6.82,center,control,plot
+9/19/2019,west,outside,P3,6.61,original,control,plot
+9/19/2019,center,outside,P3,7.32,center,control,plot
+10/30/2019,west,outside,P3,7.03,original,control,plot
+10/30/2019,center,outside,P3,7.46,center,control,plot
+2/27/2020,west,outside,P3,3.7,original,control,plot
+2/27/2020,center,outside,P3,3.91,center,control,plot
+5/21/2020,west,outside,P3,6.22,original,control,plot
+5/21/2020,center,outside,P3,6.61,center,control,plot
+7/2/2020,west,outside,P3,5.79,original,control,plot
+7/2/2020,center,outside,P3,6.01,center,control,plot
+8/21/2020,west,outside,P3,6.21,original,control,plot
+8/21/2020,center,outside,P3,6.48,center,control,plot
+9/23/2020,west,outside,P3,6.4,original,control,plot
+9/23/2020,center,outside,P3,6.77,center,control,plot
+10/21/2020,west,outside,P3,6.57,original,control,plot
+10/21/2020,center,outside,P3,6.83,center,control,plot
+11/24/2020,west,outside,P3,6.42,original,control,plot
+11/24/2020,center,outside,P3,6.75,center,control,plot
+12/22/2020,west,outside,P3,6.14,original,control,plot
+12/22/2020,center,outside,P3,6.32,center,control,plot
+1/21/2021,west,outside,P3,5.7,original,control,plot
+1/21/2021,center,outside,P3,5.88,center,control,plot
+2/21/2021,west,outside,P3,5.8,original,control,plot
+2/21/2021,center,outside,P3,5.88,center,control,plot
+3/31/2021,west,outside,P3,5.43,original,control,plot
+3/31/2021,center,outside,P3,5.5,center,control,plot
+4/22/2021,west,outside,P3,5.39,original,control,plot
+4/22/2021,center,outside,P3,5.69,center,control,plot
+5/20/2021,west,outside,P3,5.74,original,control,plot
+5/20/2021,center,outside,P3,5.64,center,control,plot
+7/22/2021,west,outside,P3,6,original,control,plot
+7/22/2021,center,outside,P3,6.1,center,control,plot
+9/23/2021,west,outside,P3,6.09,original,control,plot
+9/23/2021,center,outside,P3,5.94,center,control,plot
+12/9/2021,west,outside,P3,6.64,original,control,plot
+12/9/2021,center,outside,P3,6.47,center,control,plot
+2/18/2022,west,outside,P3,5.32,original,control,plot
+2/18/2022,center,outside,P3,5.29,center,control,plot
+4/14/2022,west,outside,P3,5.35,original,control,plot
+4/14/2022,center,outside,P3,5.33,center,control,plot
+6/8/2022,west,outside,P3,4.79,original,control,plot
+6/8/2022,center,outside,P3,4.91,center,control,plot
+8/16/2022,west,outside,P3,5.27,original,control,plot
+8/16/2022,center,outside,P3,5.57,center,control,plot
+10/18/2022,west,outside,P3,5.71,original,control,plot
+10/18/2022,center,outside,P3,5.7,center,control,plot
+12/8/2022,west,outside,P3,5.68,original,control,plot
+12/8/2022,center,outside,P3,5.74,center,control,plot
+2/8/2023,west,outside,P3,5.48,original,control,plot
+2/8/2023,center,outside,P3,5.41,center,control,plot
+4/13/2023,west,outside,P3,4.93,original,control,plot
+4/13/2023,center,outside,P3,4.97,center,control,plot
+6/27/2023,west,outside,P3,5.08,original,control,plot
+6/27/2023,center,outside,P3,5.06,center,control,plot
+9/8/2023,west,outside,P3,5.48,original,control,plot
+9/8/2023,center,outside,P3,5.48,center,control,plot
+11/14/2023,west,outside,P3,5.95,original,control,plot
+11/14/2023,center,outside,P3,5.48,center,control,plot
+1/17/2024,west,outside,P3,5.31,original,control,plot
+1/17/2024,center,outside,P3,5.22,center,control,plot
+3/15/2024,west,outside,P3,5.09,original,control,plot
+3/15/2024,center,outside,P3,5.35,center,control,plot
+5/10/2024,west,outside,P3,5.12,original,control,plot
+5/10/2024,center,outside,P3,5.15,center,control,plot
+8/9/2024,west,outside,P3,5.37,original,control,plot
+8/9/2024,center,outside,P3,5.45,center,control,plot
+10/22/2024,west,outside,P3,4.97,original,control,plot
+10/22/2024,center,outside,P3,5.1,center,control,plot
+8/4/2017,unknown,inside,P4,6.06,original,warmed,plot
+1/11/2018,unknown,inside,P4,0.47,original,warmed,plot
+1/29/2018,unknown,inside,P4,0.58,original,warmed,plot
+8/27/2018,west,outside,P4,2.16,original,warmed,plot
+12/13/2018,west,outside,P4,3,original,warmed,plot
+2/7/2019,west,outside,P4,3.67,original,warmed,plot
+3/7/2019,west,outside,P4,3.74,original,warmed,plot
+4/10/2019,west,outside,P4,3.58,original,warmed,plot
+5/22/2019,west,outside,P4,3.37,original,warmed,plot
+7/11/2019,west,outside,P4,3.07,original,warmed,plot
+7/11/2019,center,outside,P4,3.46,center,warmed,plot
+8/23/2019,west,outside,P4,3.93,original,warmed,plot
+8/23/2019,center,outside,P4,3.16,center,warmed,plot
+9/19/2019,west,outside,P4,4.54,original,warmed,plot
+9/19/2019,center,outside,P4,4.99,center,warmed,plot
+10/30/2019,west,outside,P4,5.31,original,warmed,plot
+10/30/2019,center,outside,P4,5.31,center,warmed,plot
+2/27/2020,west,outside,P4,2.74,original,warmed,plot
+2/27/2020,center,outside,P4,3.11,center,warmed,plot
+5/21/2020,west,outside,P4,5.07,original,warmed,plot
+5/21/2020,center,outside,P4,5.63,center,warmed,plot
+7/2/2020,west,outside,P4,4.75,original,warmed,plot
+7/2/2020,center,outside,P4,5.05,center,warmed,plot
+8/21/2020,west,outside,P4,5.42,original,warmed,plot
+8/21/2020,center,outside,P4,5.72,center,warmed,plot
+9/23/2020,west,outside,P4,5.04,original,warmed,plot
+9/23/2020,center,outside,P4,5.75,center,warmed,plot
+10/21/2020,west,outside,P4,5.14,original,warmed,plot
+10/21/2020,center,outside,P4,5.76,center,warmed,plot
+11/24/2020,west,outside,P4,5.79,original,warmed,plot
+11/24/2020,center,outside,P4,6.21,center,warmed,plot
+12/22/2020,west,outside,P4,5.72,original,warmed,plot
+12/22/2020,center,outside,P4,6.51,center,warmed,plot
+1/21/2021,west,outside,P4,5.49,original,warmed,plot
+1/21/2021,center,outside,P4,6.09,center,warmed,plot
+2/21/2021,west,outside,P4,5.33,original,warmed,plot
+2/21/2021,center,outside,P4,6.05,center,warmed,plot
+3/31/2021,west,outside,P4,4.96,original,warmed,plot
+3/31/2021,center,outside,P4,5.6,center,warmed,plot
+4/22/2021,west,outside,P4,4.76,original,warmed,plot
+4/22/2021,center,outside,P4,5.25,center,warmed,plot
+5/20/2021,west,outside,P4,4.84,original,warmed,plot
+5/20/2021,center,outside,P4,4.89,center,warmed,plot
+7/22/2021,west,outside,P4,5.16,original,warmed,plot
+7/22/2021,center,outside,P4,5.29,center,warmed,plot
+9/23/2021,west,outside,P4,4.76,original,warmed,plot
+9/23/2021,center,outside,P4,5.02,center,warmed,plot
+12/9/2021,west,outside,P4,5.94,original,warmed,plot
+12/9/2021,center,outside,P4,6.36,center,warmed,plot
+2/18/2022,west,outside,P4,4.73,original,warmed,plot
+2/18/2022,center,outside,P4,5.26,center,warmed,plot
+4/14/2022,west,outside,P4,5,original,warmed,plot
+4/14/2022,center,outside,P4,5.11,center,warmed,plot
+6/8/2022,west,outside,P4,4.31,original,warmed,plot
+6/8/2022,center,outside,P4,4.46,center,warmed,plot
+8/16/2022,west,outside,P4,4.8,original,warmed,plot
+8/16/2022,center,outside,P4,4.95,center,warmed,plot
+10/18/2022,west,outside,P4,5.09,original,warmed,plot
+10/18/2022,center,outside,P4,5.14,center,warmed,plot
+12/8/2022,west,outside,P4,5.18,original,warmed,plot
+12/8/2022,center,outside,P4,5.54,center,warmed,plot
+2/8/2023,west,outside,P4,5.14,original,warmed,plot
+2/8/2023,center,outside,P4,5.24,center,warmed,plot
+4/13/2023,west,outside,P4,4.81,original,warmed,plot
+4/13/2023,center,outside,P4,4.81,center,warmed,plot
+6/27/2023,west,outside,P4,4.86,original,warmed,plot
+6/27/2023,center,outside,P4,4.72,center,warmed,plot
+9/8/2023,west,outside,P4,5.78,original,warmed,plot
+9/8/2023,center,outside,P4,5.33,center,warmed,plot
+11/14/2023,west,outside,P4,5.43,original,warmed,plot
+11/14/2023,center,outside,P4,5.58,center,warmed,plot
+1/17/2024,west,outside,P4,5.3,original,warmed,plot
+1/17/2024,center,outside,P4,5.97,center,warmed,plot
+3/15/2024,west,outside,P4,5.53,original,warmed,plot
+3/15/2024,center,outside,P4,5.57,center,warmed,plot
+5/10/2024,west,outside,P4,5.15,original,warmed,plot
+5/10/2024,center,outside,P4,5.17,center,warmed,plot
+8/9/2024,west,outside,P4,5.53,original,warmed,plot
+8/9/2024,center,outside,P4,5.41,center,warmed,plot
+10/22/2024,west,outside,P4,5.01,original,warmed,plot
+10/22/2024,center,outside,P4,5.08,center,warmed,plot
+8/4/2017,unknown,inside,P5,6.5,original,control,plot
+1/11/2018,unknown,inside,P5,0.28,original,control,plot
+1/29/2018,unknown,inside,P5,0.38,original,control,plot
+8/27/2018,west,outside,P5,1.04,original,control,plot
+12/13/2018,west,outside,P5,3.54,original,control,plot
+2/7/2019,west,outside,P5,3.78,original,control,plot
+3/7/2019,west,outside,P5,4.64,original,control,plot
+4/10/2019,west,outside,P5,3.79,original,control,plot
+5/22/2019,west,outside,P5,4.39,original,control,plot
+7/11/2019,west,outside,P5,4.34,original,control,plot
+7/11/2019,center,outside,P5,4.9,center,control,plot
+8/23/2019,west,outside,P5,4.86,original,control,plot
+8/23/2019,center,outside,P5,5.08,center,control,plot
+9/19/2019,west,outside,P5,5.23,original,control,plot
+9/19/2019,center,outside,P5,6.08,center,control,plot
+10/30/2019,west,outside,P5,5.61,original,control,plot
+10/30/2019,center,outside,P5,6.48,center,control,plot
+2/27/2020,west,outside,P5,2.1,original,control,plot
+2/27/2020,center,outside,P5,2.15,center,control,plot
+5/21/2020,west,outside,P5,4.85,original,control,plot
+5/21/2020,center,outside,P5,4.52,center,control,plot
+7/2/2020,west,outside,P5,4.51,original,control,plot
+7/2/2020,center,outside,P5,4.45,center,control,plot
+8/21/2020,west,outside,P5,4.22,original,control,plot
+8/21/2020,center,outside,P5,3.39,center,control,plot
+9/23/2020,west,outside,P5,3.89,original,control,plot
+9/23/2020,center,outside,P5,4.2,center,control,plot
+10/21/2020,west,outside,P5,4.88,original,control,plot
+10/21/2020,center,outside,P5,4.82,center,control,plot
+11/24/2020,west,outside,P5,5.17,original,control,plot
+11/24/2020,center,outside,P5,5.29,center,control,plot
+12/22/2020,west,outside,P5,4.88,original,control,plot
+12/22/2020,center,outside,P5,5.63,center,control,plot
+1/21/2021,west,outside,P5,4.65,original,control,plot
+1/21/2021,center,outside,P5,5.45,center,control,plot
+2/21/2021,west,outside,P5,4.85,original,control,plot
+2/21/2021,center,outside,P5,5.33,center,control,plot
+3/31/2021,west,outside,P5,4.48,original,control,plot
+3/31/2021,center,outside,P5,4.95,center,control,plot
+4/22/2021,west,outside,P5,4.61,original,control,plot
+4/22/2021,center,outside,P5,4.98,center,control,plot
+5/20/2021,west,outside,P5,4.68,original,control,plot
+5/20/2021,center,outside,P5,5,center,control,plot
+7/22/2021,west,outside,P5,5.02,original,control,plot
+7/22/2021,center,outside,P5,5.92,center,control,plot
+9/23/2021,west,outside,P5,5.28,original,control,plot
+9/23/2021,center,outside,P5,5.65,center,control,plot
+12/9/2021,west,outside,P5,5.98,original,control,plot
+12/9/2021,center,outside,P5,6.52,center,control,plot
+2/18/2022,west,outside,P5,5.13,original,control,plot
+2/18/2022,center,outside,P5,5.27,center,control,plot
+4/14/2022,west,outside,P5,5.21,original,control,plot
+4/14/2022,center,outside,P5,5.44,center,control,plot
+6/8/2022,west,outside,P5,4.8,original,control,plot
+6/8/2022,center,outside,P5,4.78,center,control,plot
+8/16/2022,west,outside,P5,5.34,original,control,plot
+8/16/2022,center,outside,P5,5.51,center,control,plot
+10/18/2022,west,outside,P5,5.12,original,control,plot
+10/18/2022,center,outside,P5,5.51,center,control,plot
+12/8/2022,west,outside,P5,5.36,original,control,plot
+12/8/2022,center,outside,P5,5.43,center,control,plot
+2/8/2023,west,outside,P5,5.17,original,control,plot
+2/8/2023,center,outside,P5,5.12,center,control,plot
+4/13/2023,west,outside,P5,4.74,original,control,plot
+4/13/2023,center,outside,P5,4.71,center,control,plot
+6/27/2023,west,outside,P5,5.28,original,control,plot
+6/27/2023,center,outside,P5,5.49,center,control,plot
+9/8/2023,west,outside,P5,5.62,original,control,plot
+9/8/2023,center,outside,P5,5.12,center,control,plot
+11/14/2023,west,outside,P5,4.91,original,control,plot
+11/14/2023,center,outside,P5,5.45,center,control,plot
+1/17/2024,west,outside,P5,4.97,original,control,plot
+1/17/2024,center,outside,P5,5.05,center,control,plot
+3/15/2024,west,outside,P5,4.91,original,control,plot
+3/15/2024,center,outside,P5,4.93,center,control,plot
+5/10/2024,west,outside,P5,5,original,control,plot
+5/10/2024,center,outside,P5,5.54,center,control,plot
+8/9/2024,west,outside,P5,5.42,original,control,plot
+8/9/2024,center,outside,P5,5.93,center,control,plot
+10/22/2024,west,outside,P5,4.86,original,control,plot
+10/22/2024,center,outside,P5,5.14,center,control,plot
+8/4/2017,unknown,inside,P6,6.59,original,warmed,plot
+1/11/2018,unknown,inside,P6,0.27,original,warmed,plot
+1/29/2018,unknown,inside,P6,0.67,original,warmed,plot
+8/27/2018,west,outside,P6,1.88,original,warmed,plot
+12/13/2018,west,outside,P6,3.77,original,warmed,plot
+2/7/2019,west,outside,P6,4.26,original,warmed,plot
+3/7/2019,west,outside,P6,4.69,original,warmed,plot
+4/10/2019,west,outside,P6,4.3,original,warmed,plot
+5/22/2019,west,outside,P6,4.17,original,warmed,plot
+7/11/2019,west,outside,P6,3.85,original,warmed,plot
+7/11/2019,center,outside,P6,3.96,center,warmed,plot
+8/23/2019,west,outside,P6,4.08,original,warmed,plot
+8/23/2019,center,outside,P6,4.54,center,warmed,plot
+9/19/2019,west,outside,P6,4.51,original,warmed,plot
+9/19/2019,center,outside,P6,4.73,center,warmed,plot
+10/30/2019,west,outside,P6,5.13,original,warmed,plot
+10/30/2019,center,outside,P6,5.14,center,warmed,plot
+2/27/2020,west,outside,P6,2.24,original,warmed,plot
+2/27/2020,center,outside,P6,2.32,center,warmed,plot
+5/21/2020,west,outside,P6,5.07,original,warmed,plot
+5/21/2020,center,outside,P6,4.51,center,warmed,plot
+7/2/2020,west,outside,P6,4.29,original,warmed,plot
+7/2/2020,center,outside,P6,3.92,center,warmed,plot
+8/21/2020,west,outside,P6,4.11,original,warmed,plot
+8/21/2020,center,outside,P6,4.11,center,warmed,plot
+9/23/2020,west,outside,P6,4.16,original,warmed,plot
+9/23/2020,center,outside,P6,4.23,center,warmed,plot
+10/21/2020,west,outside,P6,4.62,original,warmed,plot
+10/21/2020,center,outside,P6,4.52,center,warmed,plot
+11/24/2020,west,outside,P6,4.78,original,warmed,plot
+11/24/2020,center,outside,P6,4.78,center,warmed,plot
+12/22/2020,west,outside,P6,4.98,original,warmed,plot
+12/22/2020,center,outside,P6,4.98,center,warmed,plot
+1/21/2021,west,outside,P6,4.56,original,warmed,plot
+1/21/2021,center,outside,P6,4.77,center,warmed,plot
+2/21/2021,west,outside,P6,4.59,original,warmed,plot
+2/21/2021,center,outside,P6,4.52,center,warmed,plot
+3/31/2021,west,outside,P6,4.17,original,warmed,plot
+3/31/2021,center,outside,P6,4.19,center,warmed,plot
+4/22/2021,west,outside,P6,4.19,original,warmed,plot
+4/22/2021,center,outside,P6,4.13,center,warmed,plot
+5/20/2021,west,outside,P6,4.13,original,warmed,plot
+5/20/2021,center,outside,P6,4.19,center,warmed,plot
+7/22/2021,west,outside,P6,4.14,original,warmed,plot
+7/22/2021,center,outside,P6,4.4,center,warmed,plot
+9/23/2021,west,outside,P6,4.23,original,warmed,plot
+9/23/2021,center,outside,P6,4.22,center,warmed,plot
+12/9/2021,west,outside,P6,5.01,original,warmed,plot
+12/9/2021,center,outside,P6,5.24,center,warmed,plot
+2/18/2022,west,outside,P6,4.41,original,warmed,plot
+2/18/2022,center,outside,P6,4.63,center,warmed,plot
+4/14/2022,west,outside,P6,4.81,original,warmed,plot
+4/14/2022,center,outside,P6,4.43,center,warmed,plot
+6/8/2022,west,outside,P6,3.83,original,warmed,plot
+6/8/2022,center,outside,P6,3.67,center,warmed,plot
+8/16/2022,west,outside,P6,3.85,original,warmed,plot
+8/16/2022,center,outside,P6,3.65,center,warmed,plot
+10/18/2022,west,outside,P6,4.18,original,warmed,plot
+10/18/2022,center,outside,P6,3.93,center,warmed,plot
+12/8/2022,west,outside,P6,4.58,original,warmed,plot
+12/8/2022,center,outside,P6,4.31,center,warmed,plot
+2/8/2023,west,outside,P6,4.53,original,warmed,plot
+2/8/2023,center,outside,P6,4.37,center,warmed,plot
+4/13/2023,west,outside,P6,4.36,original,warmed,plot
+4/13/2023,center,outside,P6,3.99,center,warmed,plot
+6/27/2023,west,outside,P6,4.65,original,warmed,plot
+6/27/2023,center,outside,P6,4.19,center,warmed,plot
+9/8/2023,west,outside,P6,5.8,original,warmed,plot
+9/8/2023,center,outside,P6,4.74,center,warmed,plot
+11/14/2023,west,outside,P6,5.17,original,warmed,plot
+11/14/2023,center,outside,P6,5.17,center,warmed,plot
+1/17/2024,west,outside,P6,5.2,original,warmed,plot
+1/17/2024,center,outside,P6,4.92,center,warmed,plot
+3/15/2024,west,outside,P6,4.98,original,warmed,plot
+3/15/2024,center,outside,P6,5.07,center,warmed,plot
+5/10/2024,west,outside,P6,4.81,original,warmed,plot
+5/10/2024,center,outside,P6,4.6,center,warmed,plot
+8/9/2024,west,outside,P6,4.69,original,warmed,plot
+8/9/2024,center,outside,P6,4.37,center,warmed,plot
+10/22/2024,west,outside,P6,4.9,original,warmed,plot
+10/22/2024,center,outside,P6,4.76,center,warmed,plot
+7/11/2019,west,outside,WS,2.92,original,weather station,weather station
+7/11/2019,center,outside,WS,2.4,center,weather station,weather station
+8/23/2019,west,outside,WS,3.32,original,weather station,weather station
+8/23/2019,center,outside,WS,2.81,center,weather station,weather station
+10/30/2019,west,outside,WS,7.05,original,weather station,weather station
+10/30/2019,center,outside,WS,6.23,center,weather station,weather station
+2/27/2020,west,outside,WS,3.3,original,weather station,weather station
+2/27/2020,center,outside,WS,3.47,center,weather station,weather station
+5/21/2020,west,outside,WS,6.33,original,weather station,weather station
+5/21/2020,center,outside,WS,5.86,center,weather station,weather station
+7/2/2020,west,outside,WS,5.41,original,weather station,weather station
+7/2/2020,center,outside,WS,5.72,center,weather station,weather station
+8/21/2020,west,outside,WS,5.66,original,weather station,weather station
+8/21/2020,center,outside,WS,5.24,center,weather station,weather station
+9/23/2020,west,outside,WS,5.74,original,weather station,weather station
+9/23/2020,center,outside,WS,4.89,center,weather station,weather station
+10/21/2020,west,outside,WS,6.07,original,weather station,weather station
+10/21/2020,center,outside,WS,6.16,center,weather station,weather station
+11/24/2020,west,outside,WS,6.45,original,weather station,weather station
+11/24/2020,center,outside,WS,6.57,center,weather station,weather station
+12/22/2020,west,outside,WS,6.54,original,weather station,weather station
+12/22/2020,center,outside,WS,7.05,center,weather station,weather station
+1/21/2021,west,outside,WS,6.01,original,weather station,weather station
+1/21/2021,center,outside,WS,5.89,center,weather station,weather station
+2/21/2021,west,outside,WS,5.93,original,weather station,weather station
+2/21/2021,center,outside,WS,5.8,center,weather station,weather station
+3/31/2021,west,outside,WS,5.4,original,weather station,weather station
+3/31/2021,center,outside,WS,5.54,center,weather station,weather station
+4/22/2021,west,outside,WS,5.58,original,weather station,weather station
+4/22/2021,center,outside,WS,5.31,center,weather station,weather station
+5/20/2021,west,outside,WS,5.6,original,weather station,weather station
+5/20/2021,center,outside,WS,5.31,center,weather station,weather station
+7/22/2021,west,outside,WS,6.07,original,weather station,weather station
+7/22/2021,center,outside,WS,6.27,center,weather station,weather station
+9/23/2021,west,outside,WS,6.17,original,weather station,weather station
+9/23/2021,center,outside,WS,5.94,center,weather station,weather station
+12/9/2021,west,outside,WS,6.95,original,weather station,weather station
+12/9/2021,center,outside,WS,7.03,center,weather station,weather station
+2/18/2022,west,outside,WS,5.26,original,weather station,weather station
+2/18/2022,center,outside,WS,5.6,center,weather station,weather station
+4/14/2022,west,outside,WS,5.6,original,weather station,weather station
+4/14/2022,center,outside,WS,5.32,center,weather station,weather station
+6/8/2022,west,outside,WS,5.15,original,weather station,weather station
+6/8/2022,center,outside,WS,4.91,center,weather station,weather station
+8/16/2022,west,outside,WS,5.51,original,weather station,weather station
+8/16/2022,center,outside,WS,5.48,center,weather station,weather station
+10/18/2022,west,outside,WS,5.07,original,weather station,weather station
+10/18/2022,center,outside,WS,5.13,center,weather station,weather station
+12/8/2022,west,outside,WS,5.76,original,weather station,weather station
+12/8/2022,center,outside,WS,5.78,center,weather station,weather station
+2/8/2023,west,outside,WS,5.76,original,weather station,weather station
+2/8/2023,center,outside,WS,5.78,center,weather station,weather station
+4/13/2023,west,outside,WS,4.86,original,weather station,weather station
+4/13/2023,center,outside,WS,4.92,center,weather station,weather station
+6/27/2023,west,outside,WS,5.56,original,weather station,weather station
+6/27/2023,center,outside,WS,5.44,center,weather station,weather station
+9/8/2023,west,outside,WS,4.35,original,weather station,weather station
+9/8/2023,center,outside,WS,5.78,center,weather station,weather station
+11/14/2023,west,outside,WS,5.78,original,weather station,weather station
+11/14/2023,center,outside,WS,5.8,center,weather station,weather station
+1/17/2024,west,outside,WS,5.7,original,weather station,weather station
+1/17/2024,center,outside,WS,5.37,center,weather station,weather station
+3/15/2024,west,outside,WS,5.5,original,weather station,weather station
+3/15/2024,center,outside,WS,5.88,center,weather station,weather station
+5/10/2024,west,outside,WS,5.14,original,weather station,weather station
+5/10/2024,center,outside,WS,5.39,center,weather station,weather station
+8/9/2024,west,outside,WS,5.51,original,weather station,weather station
+8/9/2024,center,outside,WS,5.23,center,weather station,weather station
+10/22/2024,west,outside,WS,5.25,original,weather station,weather station
+10/22/2024,center,outside,WS,5.49,center,weather station,weather station
