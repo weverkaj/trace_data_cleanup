@@ -193,7 +193,7 @@ ingrowth_tidy = ingrowth %>%
 
 ggplot(ingrowth) + 
   geom_segment(aes(x = date_installed, xend = date_removed,
-                   y = po4.init, yend = po4.rm, color = as.factor(date))) +
+                   y = ubial_c.init, yend = ubial_c.rm, color = as.factor(date))) +
   facet_wrap(plot~., nrow = 3) +
   scale_x_date(date_breaks = "3 month", date_labels = "%b-%Y") +
   theme_bw() +
@@ -344,4 +344,43 @@ throughfall = throughfall_raw %>%
   clean_names() %>% 
   mutate(date = dmy(date))
 ```
+
+
+
+# Nutrient Cores
+
+```{r}
+nutrient_raw = read_csv(here("data_raw/BGC_data/csv/Trace_nutrient_cores.csv"))
+```
+
+```{r}
+nutrient = nutrient_raw %>% 
+  clean_names() %>% 
+  select(-starts_with("x")) %>% 
+  filter_all(any_vars(!is.na(.))) %>% 
+  mutate(date = mdy(date)) %>% 
+  rename(tc_g.g.soil = tc,
+         tn_g.g.soil = tn,
+         tc.tn_ratio = tc_tn,
+         nh4_ug.g.soil = nh4,
+         no3_ug.g.soil = no3,
+         nh4.min_ug.g.soil.day = nh4_min,
+         no3.min_ug.g.soil.day = no3_min,
+         po4_ug.g.soil = po4,
+         ext.c_ug.g.soil = ext_c,
+         ext.n_ug.g.soil = ext_n,
+         ubial.c_ug.g.soil = ubial_c,
+         ubial.n_ug.g.soil = ubial_n,
+         ubial.p_ug.g.soil = ubial_p,
+         ubial.c.n_ratio = ubial_c_n) %>% 
+  group_by(date, plot) %>% 
+  summarise(across(tc_g.g.soil:ubial.c.n_ratio, list(mean = ~ mean(.x, na.rm = T), SD = sd))) %>% 
+  rename_with(~ paste0(., "_nutrient.cores"), c(-date, -plot))
+
+write_csv(nutrient, file = here("data_cleaned/nutrient.cores.csv"), na = "")
+
+
+```
+
+
 
