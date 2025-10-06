@@ -377,7 +377,7 @@ nutrient = nutrient_raw %>%
   summarise(across(tc_g.g.soil:ubial.c.n_ratio, list(mean = ~ mean(.x, na.rm = T), SD = sd))) %>% 
   rename_with(~ paste0(., "_nutrient.cores"), c(-date, -plot))
 
-write_csv(nutrient, file = here("data_cleaned/nutrient.cores.csv"), na = "")
+# write_csv(nutrient, file = here("data_cleaned/nutrient.cores.csv"), na = "")
 
 
 ```
