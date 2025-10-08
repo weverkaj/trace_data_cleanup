@@ -1,0 +1,27 @@
+---
+title: "bgc_flux_stitch"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(janitor)
+library(here)
+```
+
+```{r}
+flux <- read_csv(here("data_raw/BGC_data/csv/FLUX_Final.csv")) %>%
+  clean_names() %>%
+  rename(date = day)
+
+ingrowth <- read_csv(here("data_cleaned/ingrowth_cores.csv"))
+
+lysimeter <- read_csv(here("data_cleaned/lysimiter.surface.chemistry.csv"))
+
+pwchemistry <- read_csv(here("data_cleaned/pwchemistry.csv"))
+
+resin <- read_csv(here("data_cleaned/resin.csv"))
+
+```
+
