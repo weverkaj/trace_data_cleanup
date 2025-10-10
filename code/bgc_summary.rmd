@@ -340,9 +340,48 @@ throughfall_raw = read_csv(here("data_raw/BGC_data/csv/Trace_throughfall_bgc.csv
 
 
 ```{r}
-throughfall = throughfall_raw %>% 
+tf_key = tibble(collector_number = c(1:10), plot = c(NA, 1, 2, 4, NA, NA, 6, 6, 5, 3))
+
+throughfall_plot = throughfall_raw %>% 
   clean_names() %>% 
-  mutate(date = dmy(date))
+  mutate(date = dmy(date)) %>% 
+  left_join(tf_key, join_by(collector_number)) %>% 
+  mutate(volume_m_l = str_remove(volume_m_l, ",")) %>% 
+  mutate(across(3:7, as.numeric)) %>% 
+  group_by(date, plot) %>% 
+  summarise(tfvol_ml_plotmean = mean(volume_m_l, na.rm = T),
+            npoc_mgC.L_plotmean = mean(npoc_measured_mg_c_l, na.rm = T),
+            npoc_mgC_plotmean = mean(npoc_final_mg, na.rm = T),
+            tdn_mgN.L_plotmean = mean(tdn_measured_mg_n_l, na.rm = T),
+            tdn_mgN_plotmean = mean(tdn_final_mg, na.rm = T)) %>% 
+  filter(!is.na(plot))
+
+
+throughfall_date = throughfall_raw %>% 
+  clean_names() %>% 
+  mutate(date = dmy(date)) %>% 
+  mutate(volume_m_l = str_remove(volume_m_l, ",")) %>% 
+  mutate(across(3:7, as.numeric)) %>% 
+  group_by(date) %>% 
+  summarise(tfvol_ml_sitemean = mean(volume_m_l, na.rm = T),
+            tfvol_ml_siteSD = sd(volume_m_l, na.rm = T),
+            npoc_mgC.L_sitemean = mean(npoc_measured_mg_c_l, na.rm = T),
+            npoc_mgC.L_siteSD= sd(npoc_measured_mg_c_l, na.rm = T),
+            npoc_mgC_sitemean = mean(npoc_final_mg, na.rm = T),
+            npoc_mgC_siteSD = sd(npoc_final_mg, na.rm = T),
+            tdn_mgN.L_sitemean = mean(tdn_measured_mg_n_l, na.rm = T),
+            tdn_mgN.L_siteSD = sd(tdn_measured_mg_n_l, na.rm = T),
+            tdn_mgN_sitemean = mean(tdn_final_mg, na.rm = T),
+            tdn_mgN_siteSD = sd(tdn_final_mg, na.rm = T))
+
+
+throughfall = throughfall_plot %>% 
+  left_join(throughfall_date, join_by(date)) %>% 
+  rename_with(~ paste0(., "_throughfall"), c(-date, -plot))
+
+# write_csv(throughfall, file = here("data_cleaned/throughfall.csv"), na = "")
+
+
 ```
 
 

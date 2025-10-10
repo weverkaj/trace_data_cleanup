@@ -117,3 +117,27 @@ all_plant = lai %>%
 # write_csv(all_plant, file = here("data_cleaned/plant_data.csv"), na = "")
 ```
 
+
+# Litterfall
+
+```{r}
+
+litter_raw = read.csv(here("data_raw/plant_data/TRACE_litterfall_data_raw_20230324(litterfall_production_per_baske).csv"))
+
+```
+
+```{r}
+
+litter = litter_raw %>% 
+  group_by(date, method) %>% 
+  summarise(littermass = mean(wt.kg.ha)) %>% 
+  pivot_wider(id_cols = date, names_from = method, values_from = littermass) %>% 
+  mutate(date = mdy(date)) %>% 
+  rename_with(~ str_replace(., "sample.wt", "litter"), c(-date)) %>% 
+  rename_with(~ paste0(., "_kg.ha_mean_litter"), c(-date))
+
+# write_csv(litter, file = here("data_cleaned/litter.csv"), na = "")
+
+
+```
+
