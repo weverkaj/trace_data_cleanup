@@ -141,3 +141,69 @@ litter = litter_raw %>%
 
 ```
 
+
+# Roots
+```{r}
+totProd=read.csv("data_raw/ess_dive_1f9df391a77aeeb_20241028T151655779170/data/totProdfinal2Dec9.2019.16.12.20.csv")
+
+Tubes <- read.csv("data_raw/ess_dive_1f9df391a77aeeb_20241028T151655779170/data/Tubes.csv")
+#make all columns numeric
+totProd[,c("session","prodbybin","mortbybin","prod.mg.cm3","mort.mg.cm3","prod.mg.cm2","mort.mg.cm2","stock.mg.cm2","stock.mg.cm3")] <- sapply(totProd[,c("session","prodbybin","mortbybin","prod.mg.cm3","mort.mg.cm3","prod.mg.cm2","mort.mg.cm2","stock.mg.cm2","stock.mg.cm3")],as.numeric)
+totProd$date=as.character(totProd$date)
+totProd$date=as.Date(totProd$date)
+
+
+```
+
+
+```{r}
+totProdSAS=aggregate(data=totProd,cbind(len.mm.cm2,mortLength.mm.cm2.day,dlen.mm.cm2.day,
+                                        SA.m2.m2,morSA.m2.m2.day,prodSA.m2.m2.day,
+                                        stock.newRMLg.m2,prod2.newRMLg.m2.day,mort.newRMLg.m2.day)~
+                       treatment+tube+hurricane+session+depthbin.cm.+date+plot,FUN=sum,na.rm=T)
+
+
+
+totProdSAS$dlen.mm.cm2.day[totProdSAS$dlen.mm.cm2.day<0]=0
+totProdSAS$mortLength.mm.cm2.day[totProdSAS$mortLength.mm.cm2.day<0]=0
+totProdSAS$prodSA.m2.m2.day[totProdSAS$prodSA.m2.m2.day<0]=0
+totProdSAS$morSA.m2.m2.day[totProdSAS$morSA.m2.m2.day<0]=0
+#totProdSAS$prod.newRMLg.m2.day[totProdSAS$prod.newRMLg.m2.day<0]=0
+totProdSAS$prod2.newRMLg.m2.day[totProdSAS$prod2.newRMLg.m2.day<0]=0
+totProdSAS$mort.newRMLg.m2.day[totProdSAS$mort.newRMLg.m2.day<0]=0
+#totProdSAS$prodbystock.mg.cm2.day[totProdSAS$prodbystock.mg.cm2.day<0]=0
+
+
+### by plot/depth aggregate
+totProdplot=aggregate(data=totProdSAS,cbind(dlen.mm.cm2.day,mortLength.mm.cm2.day,len.mm.cm2,
+                                            prodSA.m2.m2.day,morSA.m2.m2.day,SA.m2.m2,
+                                            stock.newRMLg.m2,prod2.newRMLg.m2.day,mort.newRMLg.m2.day)~
+                        treatment+depthbin.cm.+hurricane+session+date+plot,FUN=mean,na.rm=T)
+```
+
+```{r}
+mr_data = totProdplot %>% 
+  select(-treatment, -hurricane, -session) %>% 
+  rename_with(~ str_replace(., ".mm.cm2", "_mm.cm2"), c(-date)) %>% #root length mm/cm^2
+  rename_with(~ str_replace(., ".m2.m2", "_m2.m2"), c(-date)) %>%  #root SA M^2/m^2
+  rename_with(~ str_replace(., ".newRMLg.m2", "_g.m2"), c(-date)) %>% 
+  rename_with(~ str_replace(., "dlen", "rootgrowthlength"), c(-date)) %>% 
+  rename_with(~ str_replace(., "mort", "rootmortality"), c(-date)) %>% 
+  rename_with(~ str_replace(., "len_", "rootlength_"), c(-date)) %>% 
+  rename_with(~ str_replace(., "prodSA", "rootgrowthSA"), c(-date)) %>% 
+  rename_with(~ str_replace(., "morSA", "rootmortalitySA"), c(-date)) %>% 
+  rename_with(~ str_replace(., "morSA", "rootmortalitySA"), c(-date)) %>% 
+  rename_with(~ str_replace(., "stock", "rootstock"), c(-date)) %>% 
+  rename_with(~ str_replace(., "prod2", "rootgrowth"), c(-date)) %>% 
+  mutate(depthbin.cm. = factor(depthbin.cm., levels = paste(seq(0,110, by = 10), seq(10,120, by = 10), sep = "-"), ordered = T)) %>% 
+  group_by(plot, date) %>% 
+  arrange(depthbin.cm.)
+  
+  
+  
+  
+  pivot_wider(id_cols = c(date, plot), names_from = depthbin.cm., values_from = colnames(.)[5:12])
+  
+
+```
+

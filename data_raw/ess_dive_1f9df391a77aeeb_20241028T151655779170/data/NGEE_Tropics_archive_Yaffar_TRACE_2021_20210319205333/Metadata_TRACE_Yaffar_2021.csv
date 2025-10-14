@@ -1,0 +1,28 @@
+Metadata:
+"This data is from 10  months of minirhizotron images taken in the experimental warming TRACE, Puerto Rico, beofore and after Hurricane Maria. This project has 3 warmed plots (plot 2,4,6) and 3 control plots (plot 1,3,5) with 2 Minirhizotron tubes each plot. Each sheet is meant to be a separate excel sheet data that is used in the R code for the analysis of the paper.
+"
+"From Tube 1 to Tube 12 (excluding tube 6 and 10 since they were damaged by the hurricanes) are the raw data exported from RootFly after vectorizing the Minirhizotron images.
+Each tube sheet has data of ""window"" which refers to the frame (0.63 x 8.4 cm) that the MR camera captures from the vertical of the soil. Each tube has a ""root ID"" which refers to the individual root vectorized by window. Each tube has the date when each root appeared and died, its lifespan, its maximum length and diameter throughout all the time of measurement. Finally, every tube has the individual data (by columns) of root lenght and root diameter by session. This means that the first length and diameter is from session 1 (Date 2-14-2017), then is session 2, and so one (See R code)."
+"""Depth"" = represents the vertical depth interval in which each window is recordeed"
+"""diam (mm)""= is the root dameter in that specific window/tube/date"
+"""Length (cm)"" = is the root length in that specific window/tube/date"
+"""Production (mg)"" = this is calculated first as Production (cm) = the maximum length - the length of the previouse session (in case there is no previous session, or there was no root before, the previous length is ""0""). Then we calculated the maximum RML (root mass length)= 3.002*Maximum.Diameter^(2.0096)), where the fixed numbers are from the best fit power function obtened by root samples weigthed and meassured, that were taken from the same plots. Finally, the Production (mg) = maxRML*(all$production.cm/10), where we divided by 10 to convert mm in cm"
+Mortality (mg) = last legth before it died * 3.002*(last diameter ^(2.0096))/10
+"Moistall 2021 is the data of soil moisture and soil temperature from depths of 0-10, 20-30, 30-40 by plot and date."
+"Morphology from in-growth cores is the root data collected from in-groth cores and soil cores that were picked manually. The type (remain, or res) corresponded to the time it took to collect all the roots (res samples took 10 minutes in collect, and remain took up until all roots where picked). From the roots collected we measured the length, and diameter using a WinRhizo software and we weighed them once dried. The SRL is the specific length calculated from the length;weight, and the RML is the inverse. Treatment refers to Warming and Control."
+All core campaign is the data used to calculate the RML for the root biomass calculation (See R code)
+RML calibration is the data used to calibrate the RML ecuation for root biomass (see R code)
+"Soil nutrient data GCB, 2021 is the soil nutrient data which includes the average nutrient concentrations per plot before and after the hurricanes, and also the soil average moisture
+soil average temperature, and total root production and mortality per plot for before and after the hurricanes."
+Tla_leafarea is the total leaf area data per plot and year taken by the TRACE census.
+Canopy_cover is the data measured by a densiometer which shows the canopy openness by date and plot.
+Beta acummulation represents the percentage of root biomass acummulated by depth (See R code).
+
+
+
+
+
+
+
+
+
