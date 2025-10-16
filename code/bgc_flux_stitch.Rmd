@@ -50,11 +50,11 @@ nutrient_cores <- nutrient_cores %>%
 
 # Join all BGC data to flux data by plot and date
 flux_bgc <- flux %>%
-  left_join(ingrowth_cores, by = c("plot", "date")) %>%
-  left_join(lysimeter_surface, by = c("plot", "date")) %>%
-  left_join(pwchemistry, by = c("plot", "date")) %>%
-  left_join(resin, by = c("plot", "date"), relationship = "many-to-many") %>%
-  left_join(nutrient_cores, by = c("plot", "date")) %>%
+  full_join(ingrowth_cores, by = c("plot", "date")) %>%
+  full_join(lysimeter_surface, by = c("plot", "date")) %>%
+  full_join(pwchemistry, by = c("plot", "date")) %>%
+  full_join(resin, by = c("plot", "date"), relationship = "many-to-many") %>%
+  full_join(nutrient_cores, by = c("plot", "date")) %>%
   clean_names()
 
 # Inspect the result
