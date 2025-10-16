@@ -197,13 +197,11 @@ mr_data = totProdplot %>%
   rename_with(~ str_replace(., "prod2", "rootgrowth"), c(-date)) %>% 
   mutate(depthbin.cm. = factor(depthbin.cm., levels = paste(seq(0,110, by = 10), seq(10,120, by = 10), sep = "-"), ordered = T)) %>% 
   group_by(plot, date) %>% 
-  arrange(depthbin.cm.)
-  
-  
-  
-  
+  arrange(depthbin.cm.) %>% 
   pivot_wider(id_cols = c(date, plot), names_from = depthbin.cm., values_from = colnames(.)[5:12])
   
+
+# write_csv(mr_data, file = here("data_cleaned/minirhizotron.csv"), na = "")
 
 ```
 
