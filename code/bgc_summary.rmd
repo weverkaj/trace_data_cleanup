@@ -323,8 +323,10 @@ resin = resin_data %>%
   rename(nh4_ugN.day = ug_nh4_n_day,
          no3_ugN.day = ug_no3_n_day) %>% 
   group_by(date, plot, installed) %>% 
-  summarise(nh4_ugN.day = mean(nh4_ugN.day, na.rm = T),
-            no3_ugN.day = mean(no3_ugN.day, na.rm = T)) %>% 
+  summarise(nh4_ugN.day_mean = mean(nh4_ugN.day, na.rm = T),
+            nh4_ugN.day_SD = sd(nh4_ugN.day, na.rm = T),
+            no3_ugN.day_mean = mean(no3_ugN.day, na.rm = T),
+            no3_ugN.day_SD = sd(no3_ugN.day, na.rm = T)) %>% 
   rename_with(~ paste0(., "_resin"), c(-date, -plot))
   
   
