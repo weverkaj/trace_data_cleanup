@@ -10,18 +10,55 @@ library(janitor)
 library(here)
 ```
 
-```{r}
+```{r Read Cleaned Data}
 flux <- read_csv(here("data_raw/BGC_data/csv/FLUX_Final.csv")) %>%
   clean_names() %>%
   rename(date = day)
 
-ingrowth <- read_csv(here("data_cleaned/ingrowth_cores.csv"))
+ingrowth_cores <- read_csv(here("data_cleaned/ingrowth_cores.csv"))
 
-lysimeter <- read_csv(here("data_cleaned/lysimiter.surface.chemistry.csv"))
+lysimeter_surface <- read_csv(here("data_cleaned/lysimiter.surface.chemistry.csv"))
 
 pwchemistry <- read_csv(here("data_cleaned/pwchemistry.csv"))
 
 resin <- read_csv(here("data_cleaned/resin.csv"))
 
+nutrient_cores <- read_csv(here("data_cleaned/nutrient.cores.csv"))
+
 ```
+
+```{r}
+flux <- flux %>%
+  mutate(date = as.Date(date))
+
+ingrowth_cores <- ingrowth_cores %>%
+  mutate(date = as.Date(date))
+
+lysimeter_surface <- lysimeter_surface %>%
+  mutate(date = as.Date(date))
+
+pwchemistry <- pwchemistry %>%
+  mutate(date = as.Date(date))
+
+resin <- resin %>%
+  mutate(date = as.Date(date)) %>% 
+  filter(!is.na(as.numeric(plot))) %>%   # keep only numeric plot values
+  mutate(plot = as.numeric(plot))
+
+nutrient_cores <- nutrient_cores %>%
+  mutate(date = as.Date(date))
+
+# Join all BGC data to flux data by plot and date
+flux_bgc <- flux %>%
+  left_join(ingrowth_cores, by = c("plot", "date")) %>%
+  left_join(lysimeter_surface, by = c("plot", "date")) %>%
+  left_join(pwchemistry, by = c("plot", "date")) %>%
+  left_join(resin, by = c("plot", "date"), relationship = "many-to-many") %>%
+  left_join(nutrient_cores, by = c("plot", "date")) %>%
+  clean_names()
+
+# Inspect the result
+glimpse(flux_bgc)
+```
+
 
