@@ -205,3 +205,185 @@ mr_data = totProdplot %>%
 
 ```
 
+# Root respiration
+
+
+```{r}
+
+root_resp_raw = read_csv(here("data_raw/plant_data/rootRespiration_TRACE_MAR2017-OCT2020.csv"))
+
+```
+
+
+
+
+
+## Clean colnames func
+
+
+```{r}
+library(dplyr)
+library(stringr)
+library(purrr)
+
+
+rename_to_var_unit_depth <- function(nms) {
+  map_chr(nms, function(x) {
+    original <- x
+    s <- x |>
+      str_to_lower() |>
+      str_replace_all("[^a-z0-9_]", "_") |>
+      str_replace_all("_+", "_") |>
+      str_remove("^_") |>
+      str_remove("_$")
+
+    # ---- keep keys/exceptions exactly ----
+    if (s %in% c("plot", "date", "length_cm")) return(original)
+
+    # ---- depth (surf, deepcm<digits>, or 0_10 style) ----
+    depth <- str_extract(s, "(?:^|_)(surf|deepcm\\d+|\\d+_\\d+)(?:_|$)")
+    depth <- if (!is.na(depth)) str_remove_all(depth, "^_|_$") else NA_character_
+    if (!is.na(depth)) {
+      s <- s |>
+        str_replace(paste0("(^|_)", depth, "(_|$)"), "\\1\\2") |>
+        str_replace_all("_+", "_") |>
+        str_remove("^_") |>
+        str_remove("_$")
+    }
+
+    # ---- unit detection (ordered) ----
+    # also detect count if the name ends in "_n"
+    unit <- case_when(
+      str_detect(s, "nmol.*co2.*g_1.*s_1") ~ "nmolCO2.g.s",
+      str_detect(s, "mmol.*g_1.*d_1")      ~ "mmol.g.d",
+      str_detect(s, "(^|_)g_c_d_1($|_)")   ~ "g.C.d",
+      str_detect(s, "(^|_)ug_g_1($|_)")    ~ "ug.g",
+      str_detect(s, "(^|_)cm_g_1($|_)")    ~ "cm.g",
+      str_detect(s, "(^|_)g_cm_3($|_)")    ~ "g.cm-3",
+      str_detect(s, "(^|_)cm3cm_3($|_)")   ~ "cm3.cm-3",
+      str_detect(s, "(^|_)cm2($|_)")       ~ "cm2",
+      str_detect(s, "(^|_)cm3($|_)")       ~ "cm3",
+      str_detect(s, "(^|_)mm($|_)")        ~ "mm",
+      str_detect(s, "(^|_)percent($|_)")   ~ "percent",
+      str_detect(s, "_n$")                 ~ "count",
+      TRUE ~ NA_character_
+    )
+
+    # ---- remove unit tokens from 's' (leaving just varname bits) ----
+    s <- s |>
+      str_replace("nmol_co2_g_1_s_1", "") |>
+      str_replace("mmolg_1d_1", "") |>
+      str_replace("(\\b|_)g_c_d_1(\\b|_)", "_") |>
+      str_replace("(\\b|_)ug_g_1(\\b|_)", "_") |>
+      str_replace("(\\b|_)cm_g_1(\\b|_)", "_") |>
+      str_replace("(\\b|_)g_cm_3(\\b|_)", "_") |>
+      str_replace("(\\b|_)cm3cm_3(\\b|_)", "_") |>
+      str_replace("(\\b|_)cm2(\\b|_)", "_") |>
+      str_replace("(\\b|_)cm3(\\b|_)", "_") |>
+      str_replace("(\\b|_)mm(\\b|_)", "_") |>
+      str_replace("(\\b|_)percent(\\b|_)", "_") |>
+      str_replace("_n$", "") |>
+      # remove trailing "..._1soil" and any residual "_soil" (but not the leading "soil_")
+      str_replace("_1soil$", "") |>
+      str_replace("_soil$", "") |>
+      str_replace_all("_+", "_") |>
+      str_remove("^_") |>
+      str_remove("_$")
+
+    # ---- source prefix (for varname), but do NOT append as unit ----
+    src <- case_when(
+      str_starts(s, "soil_") ~ "soil",
+      str_starts(s, "root_") ~ "root",
+      TRUE ~ NA_character_
+    )
+    rest <- if (!is.na(src)) str_remove(s, paste0("^", src, "_")) else s
+
+    # ---- analyte token mapping ----
+    toks <- if (rest == "") character(0) else str_split(rest, "_", simplify = TRUE)
+    if (length(toks)) {
+      analyte <- tolower(toks[1])
+      analyte_std <- case_when(
+        analyte == "c"   ~ "C",
+        analyte == "n"   ~ "N",
+        analyte == "po4" ~ "PO4",
+        analyte == "nh4" ~ "NH4",
+        analyte == "no3" ~ "NO3",
+        TRUE ~ toks[1]
+      )
+      remainder <- if (length(toks) > 1) toks[-1] else character(0)
+    } else {
+      analyte_std <- character(0)
+      remainder <- character(0)
+    }
+
+    # ---- compose varname with dots INSIDE varname only ----
+    varname <- paste(
+      c(na.omit(src), analyte_std, remainder),
+      collapse = "."
+    ) |>
+      str_replace_all("\\.+", ".") |>
+      str_remove("^\\.") |>
+      str_remove("\\.$")
+
+    # ---- assemble final: varname_unit_depth ----
+    paste0(
+      varname %||% "",
+      if (!is.na(unit)) paste0("_", unit) else "",
+      if (!is.na(depth)) paste0("_", depth) else ""
+    )
+  })
+}
+
+
+
+```
+
+
+
+```{r}
+
+root_resp = root_resp_raw %>% 
+  clean_names() %>% 
+  mutate(date_time_measured = mdy(date_time_measured),
+         date_time_installed = mdy(date_time_installed))
+
+
+root_ig = root_resp %>% 
+  filter(ig_or_soil == "IG") %>% 
+  select(-ig_or_soil, -campaign, -core, -rep, -treatment, - year_month, -plots_on_off, -pre_post_hurricane) %>% 
+  rename(date = date_time_measured) %>% 
+  relocate(date) %>% 
+  rename_with(rename_to_var_unit_depth) %>% 
+  rename_with(~ str_replace(., ".ug", "_ug"), c(-date)) %>% 
+  rename_with(~ str_replace(., "mass.g", "mass_g"), c(-date)) %>% 
+  rename_with(~ str_replace(., "-", ""), c(-date)) %>% 
+  rename_with(~ str_replace(., "\\.c", "_c"), c(-date)) %>% 
+  rename_with(~ str_replace(., ".1", ""), c(-date)) %>% 
+  rename_with(~ paste0(., "_rootigcores"), c(-date, -plot))
+
+
+# write_csv(root_ig, file = here("data_cleaned/rootig.csv"), na = "")
+
+```
+
+
+```{r}
+root_soil = root_resp %>% 
+  filter(ig_or_soil == "soil") %>% 
+  select(-date_time_installed, -ig_or_soil, -campaign, - core, -rep, -treatment, -days_in_plots, - year_month, -plots_on_off, -pre_post_hurricane) %>% 
+  rename(date = date_time_measured) %>% 
+  relocate(date) %>% 
+  rename_with(rename_to_var_unit_depth) %>% 
+  rename_with(~ str_replace(., ".ug", "_ug"), c(-date)) %>% 
+  rename_with(~ str_replace(., "mass.g", "mass_g"), c(-date)) %>% 
+  rename_with(~ str_replace(., "-", ""), c(-date)) %>% 
+  rename_with(~ str_replace(., "\\.c", "_c"), c(-date)) %>% 
+  rename_with(~ str_replace(., ".1", ""), c(-date)) %>% 
+  rename_with(~ paste0(., "_rootsoilcores"), c(-date, -plot))
+
+# write_csv(root_soil, file = here("data_cleaned/rootsoil.csv"), na = "")
+
+
+
+```
+
